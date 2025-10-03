@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/user")
 public class UserController {
 
-    // 👤 Личный кабинет пользователя
+    //  Личный кабинет пользователя
     @GetMapping
     public String userProfile(@AuthenticationPrincipal User user, Model model) {
         model.addAttribute("user", user);

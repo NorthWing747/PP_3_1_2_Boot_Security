@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         logger.info("UserServiceImpl инициализирован");
     }
 
-    // 🔐 Реализация UserDetailsService для Spring Security
+    // Реализация UserDetailsService для Spring Security
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         logger.debug("Попытка загрузки пользователя по логину: {}", username);
@@ -99,7 +99,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
     }
 
-    // 🔧 Исправляем пользователей без ролей
+    // Исправляем пользователей без ролей
     @PostConstruct
     public void fixExistingUsersWithoutRoles() {
         logger.debug("Проверка пользователей без ролей...");
@@ -130,7 +130,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
     }
 
-    // 📋 CRUD методы
+    //  CRUD методы
     @Override
     public List<User> getAll() {
         logger.debug("Запрос всех пользователей");
@@ -234,7 +234,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         logger.info("Пользователь успешно удален: {} (ID: {})", user.getUsername(), id);
     }
 
-    // 🔍 Диагностический метод для проверки ролей пользователей
+    //  Диагностический метод для проверки ролей пользователей
     public void checkUserRoles() {
         logger.debug("=== НАЧАЛО ДИАГНОСТИКИ РОЛЕЙ ПОЛЬЗОВАТЕЛЕЙ ===");
 
@@ -249,7 +249,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         logger.debug("=== КОНЕЦ ДИАГНОСТИКИ РОЛЕЙ ПОЛЬЗОВАТЕЛЕЙ ===");
     }
 
-    // 🔧 Метод для принудительного назначения роли пользователю
+    // Метод для принудительного назначения роли пользователю
     public void assignRoleToUser(Long userId, String roleName) {
         logger.info("Попытка назначения роли {} пользователю с ID: {}", roleName, userId);
 
@@ -275,8 +275,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public Optional<User> findByEmail(String email) {
         logger.debug("Поиск пользователя по email: {}", email);
 
-        // Вам нужно добавить этот метод в UserRepository
-        // Optional<User> user = userRepository.findByEmail(email);
         Optional<User> user = Optional.empty(); // заглушка
 
         if (user.isPresent()) {
