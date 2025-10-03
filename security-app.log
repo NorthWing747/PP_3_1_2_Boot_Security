@@ -1,0 +1,963 @@
+2025-10-03 11:32:50.943  INFO 564 --- [main] d.SpringBootSecurityDemoApplicationTests : Starting SpringBootSecurityDemoApplicationTests using Java 23 on Base with PID 564 (started by Anton in C:\Users\Антон\IdeaProjects\Lesson\Spring_Zaur\PP_3_1_2_Boot_Security)
+2025-10-03 11:32:50.944 DEBUG 564 --- [main] d.SpringBootSecurityDemoApplicationTests : Running with Spring Boot v2.6.2, Spring v5.3.14
+2025-10-03 11:32:50.944  INFO 564 --- [main] d.SpringBootSecurityDemoApplicationTests : No active profile set, falling back to default profiles: default
+2025-10-03 11:32:50.966 DEBUG 564 --- [main] o.s.w.c.s.GenericWebApplicationContext   : Refreshing org.springframework.web.context.support.GenericWebApplicationContext@7997b197
+2025-10-03 11:32:51.368  INFO 564 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-03 11:32:51.406  INFO 564 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 32 ms. Found 2 JPA repository interfaces.
+2025-10-03 11:32:51.767  INFO 564 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-03 11:32:51.798  INFO 564 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.3.Final
+2025-10-03 11:32:51.894  INFO 564 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2025-10-03 11:32:51.967  INFO 564 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-10-03 11:32:52.092  INFO 564 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-10-03 11:32:52.101  INFO 564 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2025-10-03 11:32:52.476  INFO 564 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-10-03 11:32:52.483  INFO 564 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-03 11:32:52.521  WARN 564 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-10-03 11:32:52.815  INFO 564 --- [main] r.k.s.b.demo.service.UserServiceImpl     : UserServiceImpl инициализирован
+2025-10-03 11:32:52.817 DEBUG 564 --- [main] r.k.s.b.demo.service.UserServiceImpl     : Проверка пользователей без ролей...
+2025-10-03 11:32:52.901 DEBUG 564 --- [main] org.hibernate.SQL                        : 
+    select
+        user0_.id as id1_2_,
+        user0_.age as age2_2_,
+        user0_.email as email3_2_,
+        user0_.name as name4_2_,
+        user0_.password as password5_2_,
+        user0_.surname as surname6_2_,
+        user0_.username as username7_2_ 
+    from
+        users user0_
+2025-10-03 11:32:52.913 DEBUG 564 --- [main] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:32:52.915 TRACE 564 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [18]
+2025-10-03 11:32:52.921 DEBUG 564 --- [main] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:32:52.921 TRACE 564 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [17]
+2025-10-03 11:32:52.922 DEBUG 564 --- [main] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:32:52.922 TRACE 564 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [15]
+2025-10-03 11:32:52.923 DEBUG 564 --- [main] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:32:52.923 TRACE 564 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [14]
+2025-10-03 11:32:52.924 DEBUG 564 --- [main] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:32:52.924 TRACE 564 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [13]
+2025-10-03 11:32:52.950 DEBUG 564 --- [main] org.hibernate.SQL                        : 
+    select
+        role0_.id as id1_0_,
+        role0_.name as name2_0_ 
+    from
+        roles role0_ 
+    where
+        role0_.name=?
+2025-10-03 11:32:52.950 TRACE 564 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ROLE_USER]
+2025-10-03 11:32:52.953 DEBUG 564 --- [main] r.k.s.b.demo.service.UserServiceImpl     : Пользователи без ролей не найдены
+2025-10-03 11:32:52.953  INFO 564 --- [main] r.k.s.b.demo.service.UserServiceImpl     : Начало инициализации тестовых данных...
+2025-10-03 11:32:52.953 DEBUG 564 --- [main] org.hibernate.SQL                        : 
+    select
+        role0_.id as id1_0_,
+        role0_.name as name2_0_ 
+    from
+        roles role0_ 
+    where
+        role0_.name=?
+2025-10-03 11:32:52.953 TRACE 564 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ROLE_USER]
+2025-10-03 11:32:52.955 DEBUG 564 --- [main] org.hibernate.SQL                        : 
+    select
+        role0_.id as id1_0_,
+        role0_.name as name2_0_ 
+    from
+        roles role0_ 
+    where
+        role0_.name=?
+2025-10-03 11:32:52.955 TRACE 564 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ROLE_ADMIN]
+2025-10-03 11:32:52.958 DEBUG 564 --- [main] org.hibernate.SQL                        : 
+    select
+        user0_.id as col_0_0_ 
+    from
+        users user0_ 
+    where
+        user0_.username=? limit ?
+2025-10-03 11:32:52.959 TRACE 564 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [user]
+2025-10-03 11:32:52.960 DEBUG 564 --- [main] r.k.s.b.demo.service.UserServiceImpl     : Тестовый пользователь 'user' уже существует
+2025-10-03 11:32:52.960 DEBUG 564 --- [main] org.hibernate.SQL                        : 
+    select
+        user0_.id as col_0_0_ 
+    from
+        users user0_ 
+    where
+        user0_.username=? limit ?
+2025-10-03 11:32:52.960 TRACE 564 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [admin]
+2025-10-03 11:32:52.961 DEBUG 564 --- [main] r.k.s.b.demo.service.UserServiceImpl     : Тестовый администратор 'admin' уже существует
+2025-10-03 11:32:52.961 DEBUG 564 --- [main] r.k.s.b.demo.service.UserServiceImpl     : Проверка пользователей без ролей...
+2025-10-03 11:32:52.962 DEBUG 564 --- [main] org.hibernate.SQL                        : 
+    select
+        user0_.id as id1_2_,
+        user0_.age as age2_2_,
+        user0_.email as email3_2_,
+        user0_.name as name4_2_,
+        user0_.password as password5_2_,
+        user0_.surname as surname6_2_,
+        user0_.username as username7_2_ 
+    from
+        users user0_
+2025-10-03 11:32:52.963 DEBUG 564 --- [main] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:32:52.963 TRACE 564 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [18]
+2025-10-03 11:32:52.964 DEBUG 564 --- [main] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:32:52.964 TRACE 564 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [17]
+2025-10-03 11:32:52.965 DEBUG 564 --- [main] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:32:52.965 TRACE 564 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [15]
+2025-10-03 11:32:52.966 DEBUG 564 --- [main] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:32:52.966 TRACE 564 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [14]
+2025-10-03 11:32:52.967 DEBUG 564 --- [main] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:32:52.967 TRACE 564 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [13]
+2025-10-03 11:32:52.969 DEBUG 564 --- [main] org.hibernate.SQL                        : 
+    select
+        role0_.id as id1_0_,
+        role0_.name as name2_0_ 
+    from
+        roles role0_ 
+    where
+        role0_.name=?
+2025-10-03 11:32:52.969 TRACE 564 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ROLE_USER]
+2025-10-03 11:32:52.969 DEBUG 564 --- [main] r.k.s.b.demo.service.UserServiceImpl     : Пользователи без ролей не найдены
+2025-10-03 11:32:52.969  INFO 564 --- [main] r.k.s.b.demo.service.UserServiceImpl     : Инициализация тестовых данных завершена успешно
+2025-10-03 11:32:53.101  INFO 564 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7ffc4195, org.springframework.security.web.context.SecurityContextPersistenceFilter@3b0c38f2, org.springframework.security.web.header.HeaderWriterFilter@642f8b7f, org.springframework.security.web.csrf.CsrfFilter@350be5ec, org.springframework.security.web.authentication.logout.LogoutFilter@69d61a6f, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6f695077, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4b86a656, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4ddb9a8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7ce760af, org.springframework.security.web.session.SessionManagementFilter@663f24e6, org.springframework.security.web.access.ExceptionTranslationFilter@394331a8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7167d81b]
+2025-10-03 11:32:53.302 DEBUG 564 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-10-03 11:32:53.347 DEBUG 564 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 9 mappings in 'requestMappingHandlerMapping'
+2025-10-03 11:32:53.350  INFO 564 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-10-03 11:32:53.365 DEBUG 564 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/, /user, /admin, /login, /access-denied] in 'viewControllerHandlerMapping'
+2025-10-03 11:32:53.379 DEBUG 564 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-10-03 11:32:53.387 DEBUG 564 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-10-03 11:32:53.511  INFO 564 --- [main] d.SpringBootSecurityDemoApplicationTests : Started SpringBootSecurityDemoApplicationTests in 2.739 seconds (JVM running for 3.296)
+2025-10-03 11:32:53.584 DEBUG 564 --- [SpringApplicationShutdownHook] o.s.w.c.s.GenericWebApplicationContext   : Closing org.springframework.web.context.support.GenericWebApplicationContext@7997b197, started on Fri Oct 03 11:32:50 MSK 2025
+2025-10-03 11:32:53.587  INFO 564 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-03 11:32:53.588  INFO 564 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-10-03 11:32:53.595  INFO 564 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-10-03 11:33:04.219  INFO 8676 --- [main] .s.b.d.SpringBootSecurityDemoApplication : Starting SpringBootSecurityDemoApplication using Java 23 on Base with PID 8676 (C:\Users\Антон\IdeaProjects\Lesson\Spring_Zaur\PP_3_1_2_Boot_Security\target\classes started by Anton in C:\Users\Антон\IdeaProjects\Lesson\Spring_Zaur\PP_3_1_2_Boot_Security)
+2025-10-03 11:33:04.221 DEBUG 8676 --- [main] .s.b.d.SpringBootSecurityDemoApplication : Running with Spring Boot v2.6.2, Spring v5.3.14
+2025-10-03 11:33:04.221  INFO 8676 --- [main] .s.b.d.SpringBootSecurityDemoApplication : No active profile set, falling back to default profiles: default
+2025-10-03 11:33:04.562  INFO 8676 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-10-03 11:33:04.592  INFO 8676 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 24 ms. Found 2 JPA repository interfaces.
+2025-10-03 11:33:04.863  INFO 8676 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2025-10-03 11:33:04.869  INFO 8676 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-10-03 11:33:04.870  INFO 8676 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2025-10-03 11:33:04.912  INFO 8676 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-10-03 11:33:04.912  INFO 8676 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 658 ms
+2025-10-03 11:33:05.002  INFO 8676 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-10-03 11:33:05.028  INFO 8676 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.3.Final
+2025-10-03 11:33:05.115  INFO 8676 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2025-10-03 11:33:05.169  INFO 8676 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-10-03 11:33:05.259  INFO 8676 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-10-03 11:33:05.268  INFO 8676 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2025-10-03 11:33:05.608  INFO 8676 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2025-10-03 11:33:05.613  INFO 8676 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-10-03 11:33:05.639  WARN 8676 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-10-03 11:33:05.822  INFO 8676 --- [main] r.k.s.b.demo.service.UserServiceImpl     : UserServiceImpl инициализирован
+2025-10-03 11:33:05.822 DEBUG 8676 --- [main] r.k.s.b.demo.service.UserServiceImpl     : Проверка пользователей без ролей...
+2025-10-03 11:33:05.891 DEBUG 8676 --- [main] org.hibernate.SQL                        : 
+    select
+        user0_.id as id1_2_,
+        user0_.age as age2_2_,
+        user0_.email as email3_2_,
+        user0_.name as name4_2_,
+        user0_.password as password5_2_,
+        user0_.surname as surname6_2_,
+        user0_.username as username7_2_ 
+    from
+        users user0_
+2025-10-03 11:33:05.902 DEBUG 8676 --- [main] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:33:05.903 TRACE 8676 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [18]
+2025-10-03 11:33:05.908 DEBUG 8676 --- [main] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:33:05.908 TRACE 8676 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [17]
+2025-10-03 11:33:05.909 DEBUG 8676 --- [main] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:33:05.909 TRACE 8676 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [15]
+2025-10-03 11:33:05.910 DEBUG 8676 --- [main] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:33:05.910 TRACE 8676 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [14]
+2025-10-03 11:33:05.910 DEBUG 8676 --- [main] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:33:05.910 TRACE 8676 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [13]
+2025-10-03 11:33:05.931 DEBUG 8676 --- [main] org.hibernate.SQL                        : 
+    select
+        role0_.id as id1_0_,
+        role0_.name as name2_0_ 
+    from
+        roles role0_ 
+    where
+        role0_.name=?
+2025-10-03 11:33:05.931 TRACE 8676 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ROLE_USER]
+2025-10-03 11:33:05.933 DEBUG 8676 --- [main] r.k.s.b.demo.service.UserServiceImpl     : Пользователи без ролей не найдены
+2025-10-03 11:33:05.933  INFO 8676 --- [main] r.k.s.b.demo.service.UserServiceImpl     : Начало инициализации тестовых данных...
+2025-10-03 11:33:05.933 DEBUG 8676 --- [main] org.hibernate.SQL                        : 
+    select
+        role0_.id as id1_0_,
+        role0_.name as name2_0_ 
+    from
+        roles role0_ 
+    where
+        role0_.name=?
+2025-10-03 11:33:05.933 TRACE 8676 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ROLE_USER]
+2025-10-03 11:33:05.934 DEBUG 8676 --- [main] org.hibernate.SQL                        : 
+    select
+        role0_.id as id1_0_,
+        role0_.name as name2_0_ 
+    from
+        roles role0_ 
+    where
+        role0_.name=?
+2025-10-03 11:33:05.934 TRACE 8676 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ROLE_ADMIN]
+2025-10-03 11:33:05.937 DEBUG 8676 --- [main] org.hibernate.SQL                        : 
+    select
+        user0_.id as col_0_0_ 
+    from
+        users user0_ 
+    where
+        user0_.username=? limit ?
+2025-10-03 11:33:05.937 TRACE 8676 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [user]
+2025-10-03 11:33:05.938 DEBUG 8676 --- [main] r.k.s.b.demo.service.UserServiceImpl     : Тестовый пользователь 'user' уже существует
+2025-10-03 11:33:05.938 DEBUG 8676 --- [main] org.hibernate.SQL                        : 
+    select
+        user0_.id as col_0_0_ 
+    from
+        users user0_ 
+    where
+        user0_.username=? limit ?
+2025-10-03 11:33:05.938 TRACE 8676 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [admin]
+2025-10-03 11:33:05.939 DEBUG 8676 --- [main] r.k.s.b.demo.service.UserServiceImpl     : Тестовый администратор 'admin' уже существует
+2025-10-03 11:33:05.939 DEBUG 8676 --- [main] r.k.s.b.demo.service.UserServiceImpl     : Проверка пользователей без ролей...
+2025-10-03 11:33:05.939 DEBUG 8676 --- [main] org.hibernate.SQL                        : 
+    select
+        user0_.id as id1_2_,
+        user0_.age as age2_2_,
+        user0_.email as email3_2_,
+        user0_.name as name4_2_,
+        user0_.password as password5_2_,
+        user0_.surname as surname6_2_,
+        user0_.username as username7_2_ 
+    from
+        users user0_
+2025-10-03 11:33:05.940 DEBUG 8676 --- [main] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:33:05.940 TRACE 8676 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [18]
+2025-10-03 11:33:05.941 DEBUG 8676 --- [main] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:33:05.941 TRACE 8676 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [17]
+2025-10-03 11:33:05.941 DEBUG 8676 --- [main] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:33:05.941 TRACE 8676 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [15]
+2025-10-03 11:33:05.942 DEBUG 8676 --- [main] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:33:05.942 TRACE 8676 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [14]
+2025-10-03 11:33:05.943 DEBUG 8676 --- [main] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:33:05.943 TRACE 8676 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [13]
+2025-10-03 11:33:05.943 DEBUG 8676 --- [main] org.hibernate.SQL                        : 
+    select
+        role0_.id as id1_0_,
+        role0_.name as name2_0_ 
+    from
+        roles role0_ 
+    where
+        role0_.name=?
+2025-10-03 11:33:05.943 TRACE 8676 --- [main] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [ROLE_USER]
+2025-10-03 11:33:05.944 DEBUG 8676 --- [main] r.k.s.b.demo.service.UserServiceImpl     : Пользователи без ролей не найдены
+2025-10-03 11:33:05.944  INFO 8676 --- [main] r.k.s.b.demo.service.UserServiceImpl     : Инициализация тестовых данных завершена успешно
+2025-10-03 11:33:06.023  INFO 8676 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@55d8f6bb, org.springframework.security.web.context.SecurityContextPersistenceFilter@7533923b, org.springframework.security.web.header.HeaderWriterFilter@779ef5cb, org.springframework.security.web.csrf.CsrfFilter@5e6bbe63, org.springframework.security.web.authentication.logout.LogoutFilter@745c8a04, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4d9cf71d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@644f6e89, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@e460ca1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@56b48163, org.springframework.security.web.session.SessionManagementFilter@43cc7951, org.springframework.security.web.access.ExceptionTranslationFilter@453439e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@76cbee13]
+2025-10-03 11:33:06.081 DEBUG 8676 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2025-10-03 11:33:06.116 DEBUG 8676 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 9 mappings in 'requestMappingHandlerMapping'
+2025-10-03 11:33:06.119  INFO 8676 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2025-10-03 11:33:06.125 DEBUG 8676 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/, /user, /admin, /login, /access-denied] in 'viewControllerHandlerMapping'
+2025-10-03 11:33:06.132 DEBUG 8676 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2025-10-03 11:33:06.137 DEBUG 8676 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2025-10-03 11:33:06.221  INFO 8676 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2025-10-03 11:33:06.225  INFO 8676 --- [main] .s.b.d.SpringBootSecurityDemoApplication : Started SpringBootSecurityDemoApplication in 2.216 seconds (JVM running for 2.573)
+2025-10-03 11:33:25.492  INFO 8676 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-10-03 11:33:25.492  INFO 8676 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-10-03 11:33:25.492 DEBUG 8676 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2025-10-03 11:33:25.492 DEBUG 8676 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2025-10-03 11:33:25.492 DEBUG 8676 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2025-10-03 11:33:25.493 DEBUG 8676 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@5114c8a1
+2025-10-03 11:33:25.493 DEBUG 8676 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@1bbfd42f
+2025-10-03 11:33:25.493 DEBUG 8676 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2025-10-03 11:33:25.493  INFO 8676 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-10-03 11:33:25.505 DEBUG 8676 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/login?logout", parameters={masked}
+2025-10-03 11:33:25.509 DEBUG 8676 --- [http-nio-8080-exec-1] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ParameterizableViewController [view="login"]
+2025-10-03 11:33:25.514 DEBUG 8676 --- [http-nio-8080-exec-1] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8]
+2025-10-03 11:33:25.646 DEBUG 8676 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-10-03 11:34:02.014 DEBUG 8676 --- [http-nio-8080-exec-2] r.k.s.b.demo.service.UserServiceImpl     : Попытка загрузки пользователя по логину: admin
+2025-10-03 11:34:02.016 DEBUG 8676 --- [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        user0_.id as id1_2_,
+        user0_.age as age2_2_,
+        user0_.email as email3_2_,
+        user0_.name as name4_2_,
+        user0_.password as password5_2_,
+        user0_.surname as surname6_2_,
+        user0_.username as username7_2_ 
+    from
+        users user0_ 
+    where
+        user0_.username=?
+2025-10-03 11:34:02.016 TRACE 8676 --- [http-nio-8080-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [admin]
+2025-10-03 11:34:02.017 DEBUG 8676 --- [http-nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:34:02.017 TRACE 8676 --- [http-nio-8080-exec-2] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [15]
+2025-10-03 11:34:02.018 DEBUG 8676 --- [http-nio-8080-exec-2] r.k.s.b.demo.service.UserServiceImpl     : Пользователь найден: admin (роли: [ROLE_ADMIN])
+2025-10-03 11:34:02.105 DEBUG 8676 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/admin", parameters={}
+2025-10-03 11:34:02.106 DEBUG 8676 --- [http-nio-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kata.spring.boot_security.demo.controller.AdminController#adminPage(Model)
+2025-10-03 11:34:02.112 DEBUG 8676 --- [http-nio-8080-exec-3] r.k.s.b.demo.service.UserServiceImpl     : Запрос всех пользователей
+2025-10-03 11:34:02.112 DEBUG 8676 --- [http-nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        user0_.id as id1_2_,
+        user0_.age as age2_2_,
+        user0_.email as email3_2_,
+        user0_.name as name4_2_,
+        user0_.password as password5_2_,
+        user0_.surname as surname6_2_,
+        user0_.username as username7_2_ 
+    from
+        users user0_
+2025-10-03 11:34:02.114 DEBUG 8676 --- [http-nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:34:02.114 TRACE 8676 --- [http-nio-8080-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [18]
+2025-10-03 11:34:02.115 DEBUG 8676 --- [http-nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:34:02.115 TRACE 8676 --- [http-nio-8080-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [17]
+2025-10-03 11:34:02.116 DEBUG 8676 --- [http-nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:34:02.116 TRACE 8676 --- [http-nio-8080-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [15]
+2025-10-03 11:34:02.117 DEBUG 8676 --- [http-nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:34:02.117 TRACE 8676 --- [http-nio-8080-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [14]
+2025-10-03 11:34:02.117 DEBUG 8676 --- [http-nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:34:02.118 TRACE 8676 --- [http-nio-8080-exec-3] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [13]
+2025-10-03 11:34:02.118 DEBUG 8676 --- [http-nio-8080-exec-3] r.k.s.b.demo.service.UserServiceImpl     : Найдено пользователей: 5
+2025-10-03 11:34:02.121 DEBUG 8676 --- [http-nio-8080-exec-3] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8]
+2025-10-03 11:34:02.136 DEBUG 8676 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-10-03 11:35:41.100 DEBUG 8676 --- [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/admin/editUser?id=13", parameters={masked}
+2025-10-03 11:35:41.100 DEBUG 8676 --- [http-nio-8080-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kata.spring.boot_security.demo.controller.AdminController#showEditUserForm(Long, Model)
+2025-10-03 11:35:41.105 DEBUG 8676 --- [http-nio-8080-exec-6] r.k.s.b.demo.service.UserServiceImpl     : Запрос пользователя по ID: 13
+2025-10-03 11:35:41.107 DEBUG 8676 --- [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        user0_.id as id1_2_0_,
+        user0_.age as age2_2_0_,
+        user0_.email as email3_2_0_,
+        user0_.name as name4_2_0_,
+        user0_.password as password5_2_0_,
+        user0_.surname as surname6_2_0_,
+        user0_.username as username7_2_0_,
+        roles1_.user_id as user_id1_1_1_,
+        role2_.id as role_id2_1_1_,
+        role2_.id as id1_0_2_,
+        role2_.name as name2_0_2_ 
+    from
+        users user0_ 
+    left outer join
+        user_roles roles1_ 
+            on user0_.id=roles1_.user_id 
+    left outer join
+        roles role2_ 
+            on roles1_.role_id=role2_.id 
+    where
+        user0_.id=?
+2025-10-03 11:35:41.107 TRACE 8676 --- [http-nio-8080-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [13]
+2025-10-03 11:35:41.109 DEBUG 8676 --- [http-nio-8080-exec-6] r.k.s.b.demo.service.UserServiceImpl     : Пользователь найден: anton (ID: 13)
+2025-10-03 11:35:41.111 DEBUG 8676 --- [http-nio-8080-exec-6] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8]
+2025-10-03 11:35:41.125 DEBUG 8676 --- [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-10-03 11:35:47.409 DEBUG 8676 --- [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : POST "/admin/editUser", parameters={masked}
+2025-10-03 11:35:47.409 DEBUG 8676 --- [http-nio-8080-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kata.spring.boot_security.demo.controller.AdminController#updateUser(User)
+2025-10-03 11:35:47.415  INFO 8676 --- [http-nio-8080-exec-7] r.k.s.b.demo.service.UserServiceImpl     : Попытка обновления пользователя: anton (ID: 13)
+2025-10-03 11:35:47.415 DEBUG 8676 --- [http-nio-8080-exec-7] r.k.s.b.demo.service.UserServiceImpl     : Запрос пользователя по ID: 13
+2025-10-03 11:35:47.415 DEBUG 8676 --- [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        user0_.id as id1_2_0_,
+        user0_.age as age2_2_0_,
+        user0_.email as email3_2_0_,
+        user0_.name as name4_2_0_,
+        user0_.password as password5_2_0_,
+        user0_.surname as surname6_2_0_,
+        user0_.username as username7_2_0_,
+        roles1_.user_id as user_id1_1_1_,
+        role2_.id as role_id2_1_1_,
+        role2_.id as id1_0_2_,
+        role2_.name as name2_0_2_ 
+    from
+        users user0_ 
+    left outer join
+        user_roles roles1_ 
+            on user0_.id=roles1_.user_id 
+    left outer join
+        roles role2_ 
+            on roles1_.role_id=role2_.id 
+    where
+        user0_.id=?
+2025-10-03 11:35:47.416 TRACE 8676 --- [http-nio-8080-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [13]
+2025-10-03 11:35:47.416 DEBUG 8676 --- [http-nio-8080-exec-7] r.k.s.b.demo.service.UserServiceImpl     : Пользователь найден: anton (ID: 13)
+2025-10-03 11:35:47.416 DEBUG 8676 --- [http-nio-8080-exec-7] r.k.s.b.demo.service.UserServiceImpl     : Текущие данные пользователя: имя=Антон, фамилия=Иванов, возраст=23
+2025-10-03 11:35:47.417 DEBUG 8676 --- [http-nio-8080-exec-7] r.k.s.b.demo.service.UserServiceImpl     : Пароль не изменен для пользователя: anton
+2025-10-03 11:35:47.420  INFO 8676 --- [http-nio-8080-exec-7] r.k.s.b.demo.service.UserServiceImpl     : Пользователь успешно обновлен: anton (ID: 13) с ролями: [ROLE_USER]
+2025-10-03 11:35:47.424 DEBUG 8676 --- [http-nio-8080-exec-7] org.hibernate.SQL                        : 
+    update
+        users 
+    set
+        age=?,
+        email=?,
+        name=?,
+        password=?,
+        surname=?,
+        username=? 
+    where
+        id=?
+2025-10-03 11:35:47.425 TRACE 8676 --- [http-nio-8080-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [INTEGER] - [22]
+2025-10-03 11:35:47.425 TRACE 8676 --- [http-nio-8080-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [2] as [VARCHAR] - []
+2025-10-03 11:35:47.425 TRACE 8676 --- [http-nio-8080-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [3] as [VARCHAR] - [Антон]
+2025-10-03 11:35:47.425 TRACE 8676 --- [http-nio-8080-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [4] as [VARCHAR] - [$2a$10$VTfR/W7OjujJYRp7zkVueu6TTModbgpyPqbTDk8UJtAPs9pfzt7jG]
+2025-10-03 11:35:47.425 TRACE 8676 --- [http-nio-8080-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [5] as [VARCHAR] - [Иванов]
+2025-10-03 11:35:47.425 TRACE 8676 --- [http-nio-8080-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [6] as [VARCHAR] - [anton]
+2025-10-03 11:35:47.425 TRACE 8676 --- [http-nio-8080-exec-7] o.h.type.descriptor.sql.BasicBinder      : binding parameter [7] as [BIGINT] - [13]
+2025-10-03 11:35:47.430 DEBUG 8676 --- [http-nio-8080-exec-7] o.s.web.servlet.view.RedirectView        : View name 'redirect:', model {}
+2025-10-03 11:35:47.431 DEBUG 8676 --- [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 302 FOUND
+2025-10-03 11:35:47.440 DEBUG 8676 --- [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : GET "/admin", parameters={}
+2025-10-03 11:35:47.440 DEBUG 8676 --- [http-nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kata.spring.boot_security.demo.controller.AdminController#adminPage(Model)
+2025-10-03 11:35:47.441 DEBUG 8676 --- [http-nio-8080-exec-8] r.k.s.b.demo.service.UserServiceImpl     : Запрос всех пользователей
+2025-10-03 11:35:47.441 DEBUG 8676 --- [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        user0_.id as id1_2_,
+        user0_.age as age2_2_,
+        user0_.email as email3_2_,
+        user0_.name as name4_2_,
+        user0_.password as password5_2_,
+        user0_.surname as surname6_2_,
+        user0_.username as username7_2_ 
+    from
+        users user0_
+2025-10-03 11:35:47.442 DEBUG 8676 --- [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:35:47.442 TRACE 8676 --- [http-nio-8080-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [18]
+2025-10-03 11:35:47.443 DEBUG 8676 --- [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:35:47.443 TRACE 8676 --- [http-nio-8080-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [17]
+2025-10-03 11:35:47.443 DEBUG 8676 --- [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:35:47.444 TRACE 8676 --- [http-nio-8080-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [15]
+2025-10-03 11:35:47.444 DEBUG 8676 --- [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:35:47.444 TRACE 8676 --- [http-nio-8080-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [14]
+2025-10-03 11:35:47.445 DEBUG 8676 --- [http-nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:35:47.446 TRACE 8676 --- [http-nio-8080-exec-8] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [13]
+2025-10-03 11:35:47.446 DEBUG 8676 --- [http-nio-8080-exec-8] r.k.s.b.demo.service.UserServiceImpl     : Найдено пользователей: 5
+2025-10-03 11:35:47.447 DEBUG 8676 --- [http-nio-8080-exec-8] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8]
+2025-10-03 11:35:47.451 DEBUG 8676 --- [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-10-03 11:35:50.687 DEBUG 8676 --- [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/login?logout", parameters={masked}
+2025-10-03 11:35:50.687 DEBUG 8676 --- [http-nio-8080-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ParameterizableViewController [view="login"]
+2025-10-03 11:35:50.687 DEBUG 8676 --- [http-nio-8080-exec-10] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8]
+2025-10-03 11:35:50.689 DEBUG 8676 --- [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-10-03 11:35:57.530 DEBUG 8676 --- [http-nio-8080-exec-1] r.k.s.b.demo.service.UserServiceImpl     : Попытка загрузки пользователя по логину: anton
+2025-10-03 11:35:57.530 DEBUG 8676 --- [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        user0_.id as id1_2_,
+        user0_.age as age2_2_,
+        user0_.email as email3_2_,
+        user0_.name as name4_2_,
+        user0_.password as password5_2_,
+        user0_.surname as surname6_2_,
+        user0_.username as username7_2_ 
+    from
+        users user0_ 
+    where
+        user0_.username=?
+2025-10-03 11:35:57.531 TRACE 8676 --- [http-nio-8080-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [anton]
+2025-10-03 11:35:57.531 DEBUG 8676 --- [http-nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:35:57.532 TRACE 8676 --- [http-nio-8080-exec-1] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [13]
+2025-10-03 11:35:57.532 DEBUG 8676 --- [http-nio-8080-exec-1] r.k.s.b.demo.service.UserServiceImpl     : Пользователь найден: anton (роли: [ROLE_USER])
+2025-10-03 11:35:57.611 DEBUG 8676 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/user", parameters={}
+2025-10-03 11:35:57.612 DEBUG 8676 --- [http-nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kata.spring.boot_security.demo.controller.UserController#userProfile(User, Model)
+2025-10-03 11:35:57.614 DEBUG 8676 --- [http-nio-8080-exec-2] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8]
+2025-10-03 11:35:57.617 DEBUG 8676 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-10-03 11:36:06.085 DEBUG 8676 --- [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/login?logout", parameters={masked}
+2025-10-03 11:36:06.085 DEBUG 8676 --- [http-nio-8080-exec-4] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ParameterizableViewController [view="login"]
+2025-10-03 11:36:06.085 DEBUG 8676 --- [http-nio-8080-exec-4] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8]
+2025-10-03 11:36:06.087 DEBUG 8676 --- [http-nio-8080-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-10-03 11:36:12.306 DEBUG 8676 --- [http-nio-8080-exec-5] r.k.s.b.demo.service.UserServiceImpl     : Попытка загрузки пользователя по логину: admin
+2025-10-03 11:36:12.307 DEBUG 8676 --- [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        user0_.id as id1_2_,
+        user0_.age as age2_2_,
+        user0_.email as email3_2_,
+        user0_.name as name4_2_,
+        user0_.password as password5_2_,
+        user0_.surname as surname6_2_,
+        user0_.username as username7_2_ 
+    from
+        users user0_ 
+    where
+        user0_.username=?
+2025-10-03 11:36:12.307 TRACE 8676 --- [http-nio-8080-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [VARCHAR] - [admin]
+2025-10-03 11:36:12.308 DEBUG 8676 --- [http-nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:36:12.308 TRACE 8676 --- [http-nio-8080-exec-5] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [15]
+2025-10-03 11:36:12.308 DEBUG 8676 --- [http-nio-8080-exec-5] r.k.s.b.demo.service.UserServiceImpl     : Пользователь найден: admin (роли: [ROLE_ADMIN])
+2025-10-03 11:36:12.388 DEBUG 8676 --- [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : GET "/admin", parameters={}
+2025-10-03 11:36:12.388 DEBUG 8676 --- [http-nio-8080-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to ru.kata.spring.boot_security.demo.controller.AdminController#adminPage(Model)
+2025-10-03 11:36:12.389 DEBUG 8676 --- [http-nio-8080-exec-6] r.k.s.b.demo.service.UserServiceImpl     : Запрос всех пользователей
+2025-10-03 11:36:12.389 DEBUG 8676 --- [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        user0_.id as id1_2_,
+        user0_.age as age2_2_,
+        user0_.email as email3_2_,
+        user0_.name as name4_2_,
+        user0_.password as password5_2_,
+        user0_.surname as surname6_2_,
+        user0_.username as username7_2_ 
+    from
+        users user0_
+2025-10-03 11:36:12.390 DEBUG 8676 --- [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:36:12.390 TRACE 8676 --- [http-nio-8080-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [18]
+2025-10-03 11:36:12.391 DEBUG 8676 --- [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:36:12.391 TRACE 8676 --- [http-nio-8080-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [17]
+2025-10-03 11:36:12.392 DEBUG 8676 --- [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:36:12.392 TRACE 8676 --- [http-nio-8080-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [15]
+2025-10-03 11:36:12.392 DEBUG 8676 --- [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:36:12.392 TRACE 8676 --- [http-nio-8080-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [14]
+2025-10-03 11:36:12.393 DEBUG 8676 --- [http-nio-8080-exec-6] org.hibernate.SQL                        : 
+    select
+        roles0_.user_id as user_id1_1_0_,
+        roles0_.role_id as role_id2_1_0_,
+        role1_.id as id1_0_1_,
+        role1_.name as name2_0_1_ 
+    from
+        user_roles roles0_ 
+    inner join
+        roles role1_ 
+            on roles0_.role_id=role1_.id 
+    where
+        roles0_.user_id=?
+2025-10-03 11:36:12.393 TRACE 8676 --- [http-nio-8080-exec-6] o.h.type.descriptor.sql.BasicBinder      : binding parameter [1] as [BIGINT] - [13]
+2025-10-03 11:36:12.393 DEBUG 8676 --- [http-nio-8080-exec-6] r.k.s.b.demo.service.UserServiceImpl     : Найдено пользователей: 5
+2025-10-03 11:36:12.394 DEBUG 8676 --- [http-nio-8080-exec-6] o.s.w.s.v.ContentNegotiatingViewResolver : Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, */*;q=0.8]
+2025-10-03 11:36:12.398 DEBUG 8676 --- [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2025-10-03 11:41:30.113  INFO 8676 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-10-03 11:41:30.115  INFO 8676 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-10-03 11:41:30.120  INFO 8676 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
