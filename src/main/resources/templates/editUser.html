@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирование пользователя</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-container {
+            max-width: 700px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #f8f9fa;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="form-container">
+        <h1 class="mb-4 text-center">Редактирование пользователя</h1>
+
+        <!-- Форма редактирования -->
+        <form th:action="@{/admin/editUser}" th:object="${user}" method="post">
+            <!-- 🔐 CSRF-ТОКЕН -->
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+            <!-- Скрытое поле с ID -->
+            <input type="hidden" th:field="*{id}">
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="name" class="form-label">Имя *</label>
+                    <input type="text" class="form-control" id="name" th:field="*{name}"
+                           required minlength="2" maxlength="50">
+                </div>
+                <div class="col-md-6">
+                    <label for="surname" class="form-label">Фамилия *</label>
+                    <input type="text" class="form-control" id="surname" th:field="*{surname}"
+                           required minlength="2" maxlength="50">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="username" class="form-label">Логин *</label>
+                    <input type="text" class="form-control" id="username" th:field="*{username}"
+                           required>
+                </div>
+                <div class="col-md-6">
+                    <label for="age" class="form-label">Возраст</label>
+                    <input type="number" class="form-control" id="age" th:field="*{age}"
+                           min="1" max="150">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email адрес</label>
+                <input type="email" class="form-control" id="email" th:field="*{email}"
+                       placeholder="name@example.com">
+            </div>
+
+            <div class="mb-4">
+                <label for="password" class="form-label">Пароль</label>
+                <input type="password" class="form-control" id="password" name="password"
+                       placeholder="Оставьте пустым, если не меняется">
+                <div class="form-text">Если не хотите менять пароль, оставьте это поле пустым</div>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="submit" class="btn btn-warning me-md-2">
+                    ✏️ Обновить данные
+                </button>
+                <a th:href="@{/admin}" class="btn btn-outline-secondary">Отмена</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
