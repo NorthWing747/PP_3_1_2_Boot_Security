@@ -35,13 +35,13 @@ public class User implements UserDetails {
     private String email;
 
     // 🔗 Связь с ролями
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER,  cascade = CascadeType.MERGE)
     @JoinTable(
             name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    private Set<Role> roles = new HashSet<>();
+    private Set<ru.kata.spring.boot_security.demo.model.Role> roles = new HashSet<>();
 
     // конструкторы
     public User() {}
@@ -104,11 +104,11 @@ public class User implements UserDetails {
     public void setPassword(String password) { this.password = password; }
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
-    public Set<Role> getRoles() { return roles; }
-    public void setRoles(Set<Role> roles) { this.roles = roles; }
+    public Set<ru.kata.spring.boot_security.demo.model.Role> getRoles() { return roles; }
+    public void setRoles(Set<ru.kata.spring.boot_security.demo.model.Role> roles) { this.roles = roles; }
 
     // Утилитные методы
-    public void addRole(Role role) {
+    public void addRole(ru.kata.spring.boot_security.demo.model.Role role) {
         roles.add(role);
     }
 

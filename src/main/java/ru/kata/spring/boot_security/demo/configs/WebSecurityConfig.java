@@ -40,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .accessDeniedPage("/access-denied");
     }
 
-    // 🔐 Шифровальщик паролей
+    // Шифровальщик паролей
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

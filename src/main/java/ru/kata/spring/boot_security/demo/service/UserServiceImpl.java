@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return user;
     }
 
-    // 🏗️ Инициализация тестовых данных
+    //  Инициализация тестовых данных
     @PostConstruct
     public void initTestUsers() {
         logger.info("Начало инициализации тестовых данных...");
@@ -177,16 +177,36 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         // Кодируем пароль
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        // Назначаем роль по умолчанию
-        Role defaultRole = roleRepository.findByName("ROLE_USER")
-                .orElseGet(() -> {
-                    logger.warn("Роль ROLE_USER не найдена, создаем новую");
-                    return roleRepository.save(new Role("ROLE_USER"));
-                });
+        // 🔧 ИСПРАВЛЕНИЕ: Обрабатываем роли перед сохранением
+        if (user.getRoles() != null && !user.getRoles().isEmpty()) {
+            logger.debug("Обработка ролей пользователя: {}", user.getRoles());
 
-        Set<Role> roles = new HashSet<>();
-        roles.add(defaultRole);
-        user.setRoles(roles);
+            Set<Role> managedRoles = new HashSet<>();
+            for (Role role : user.getRoles()) {
+                // Ищем роль в базе данных по имени
+                Role managedRole = roleRepository.findByName(role.getName())
+                        .orElseThrow(() -> {
+                            logger.error("Роль не найдена в базе данных: {}", role.getName());
+                            return new RuntimeException("Роль не найдена: " + role.getName());
+                        });
+                managedRoles.add(managedRole);
+            }
+            user.setRoles(managedRoles);
+            logger.debug("Установлены управляемые роли: {}", managedRoles);
+
+        } else {
+            // Если роли не установлены, назначаем роль по умолчанию
+            logger.debug("Роли не указаны, назначаем ROLE_USER по умолчанию");
+            Role defaultRole = roleRepository.findByName("ROLE_USER")
+                    .orElseGet(() -> {
+                        logger.warn("Роль ROLE_USER не найдена, создаем новую");
+                        return roleRepository.save(new Role("ROLE_USER"));
+                    });
+
+            Set<Role> roles = new HashSet<>();
+            roles.add(defaultRole);
+            user.setRoles(roles);
+        }
 
         User savedUser = userRepository.save(user);
         logger.info("Пользователь успешно создан: {} (ID: {}) с ролями: {}",
