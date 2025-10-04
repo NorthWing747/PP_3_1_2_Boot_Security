@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Файлы логов
+*.log
+*.gz
