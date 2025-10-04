@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -37,19 +36,24 @@ public class AdminController {
         return "addUser";
     }
 
-    // Обработка добавления пользователя с ролями
+    // Обработка добавления пользователя с ОДНОЙ ролью
     @PostMapping("/addUser")
     public String addUser(@ModelAttribute User user,
-                          @RequestParam(value = "selectedRoles", required = false) List<String> selectedRoles) {
+                          @RequestParam(value = "selectedRole", required = false) String selectedRole) {
 
-        // Создаем временные объекты Role для выбранных ролей
-        if (selectedRoles != null && !selectedRoles.isEmpty()) {
+        // Создаем набор ролей с одной выбранной ролью
+        if (selectedRole != null && !selectedRole.trim().isEmpty()) {
             Set<Role> roles = new HashSet<>();
-            for (String roleName : selectedRoles) {
-                Role role = new Role();
-                role.setName(roleName);
-                roles.add(role);
-            }
+            Role role = new Role();
+            role.setName(selectedRole);
+            roles.add(role);
+            user.setRoles(roles);
+        } else {
+            // Роль по умолчанию, если ничего не выбрано
+            Set<Role> roles = new HashSet<>();
+            Role defaultRole = new Role();
+            defaultRole.setName("ROLE_USER");
+            roles.add(defaultRole);
             user.setRoles(roles);
         }
 
@@ -65,9 +69,21 @@ public class AdminController {
         return "editUser";
     }
 
-    // Обработка редактирования пользователя
+    // Обработка редактирования пользователя с ОДНОЙ ролью
     @PostMapping("/editUser")
-    public String updateUser(@ModelAttribute User user) {
+    public String updateUser(@ModelAttribute User user,
+                             @RequestParam(value = "selectedRole", required = false) String selectedRole) {
+
+        // Обновляем роли пользователя
+        if (selectedRole != null && !selectedRole.trim().isEmpty()) {
+            Set<Role> roles = new HashSet<>();
+            Role role = new Role();
+            role.setName(selectedRole);
+            roles.add(role);
+            user.setRoles(roles);
+        }
+        // Если роль не выбрана, сохраняем существующие роли
+
         userService.updateUser(user);
         return "redirect:/admin";
     }
