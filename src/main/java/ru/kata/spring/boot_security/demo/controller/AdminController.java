@@ -1,15 +1,14 @@
 package ru.kata.spring.boot_security.demo.controller;
 
-import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
+import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
@@ -17,12 +16,13 @@ import java.util.Set;
 public class AdminController {
 
     private final UserService userService;
-
-    public AdminController(UserService userService) {
+    private final RoleService roleService;
+    public AdminController(UserService userService, RoleService roleService) {
         this.userService = userService;
+        this.roleService = roleService;
     }
 
-    // 📋 Главная страница админки
+    // Главная страница админа
     @GetMapping
     public String adminPage(Model model) {
         model.addAttribute("users", userService.getAll());
@@ -33,31 +33,16 @@ public class AdminController {
     @GetMapping("/addUser")
     public String showAddUserForm(Model model) {
         model.addAttribute("user", new User());
+        model.addAttribute("allRoles", roleService.getAllRoles());
         return "addUser";
     }
 
     // Обработка добавления пользователя с ОДНОЙ ролью
-    @PostMapping("/addUser")
-    public String addUser(@ModelAttribute User user,
-                          @RequestParam(value = "selectedRole", required = false) String selectedRole) {
-
-        // Создаем набор ролей с одной выбранной ролью
-        if (selectedRole != null && !selectedRole.trim().isEmpty()) {
-            Set<Role> roles = new HashSet<>();
-            Role role = new Role();
-            role.setName(selectedRole);
-            roles.add(role);
-            user.setRoles(roles);
-        } else {
-            // Роль по умолчанию, если ничего не выбрано
-            Set<Role> roles = new HashSet<>();
-            Role defaultRole = new Role();
-            defaultRole.setName("ROLE_USER");
-            roles.add(defaultRole);
-            user.setRoles(roles);
-        }
-
-        userService.save(user);
+    @PostMapping("/save")
+    public String saveUser(
+            @ModelAttribute("user") User user,
+            @RequestParam(value = "roleIds", required = false) List<Long> roleIds ) {
+        userService.save(user, roleIds);
         return "redirect:/admin";
     }
 
@@ -66,25 +51,15 @@ public class AdminController {
     public String showEditUserForm(@RequestParam Long id, Model model) {
         User user = userService.getById(id);
         model.addAttribute("user", user);
+        model.addAttribute("allRoles", roleService.getAllRoles());
         return "editUser";
     }
 
-    // Обработка редактирования пользователя с ОДНОЙ ролью
+    // Обработка редактирования пользователя с двумя ролями
     @PostMapping("/editUser")
-    public String updateUser(@ModelAttribute User user,
-                             @RequestParam(value = "selectedRole", required = false) String selectedRole) {
-
-        // Обновляем роли пользователя
-        if (selectedRole != null && !selectedRole.trim().isEmpty()) {
-            Set<Role> roles = new HashSet<>();
-            Role role = new Role();
-            role.setName(selectedRole);
-            roles.add(role);
-            user.setRoles(roles);
-        }
-        // Если роль не выбрана, сохраняем существующие роли
-
-        userService.updateUser(user);
+    public String updateUser(@ModelAttribute("user") User user,
+                             @RequestParam(value = "roleIds", required = false) List<Long> roleIds) {
+        userService.updateUser(user, roleIds);
         return "redirect:/admin";
     }
 
