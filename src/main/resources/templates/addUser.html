@@ -1,99 +1,185 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Добавить пользователя</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .form-container {
-            max-width: 700px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background-color: #f8f9fa;
-            border-radius: 0.5rem;
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-        }
-    </style>
-</head>
-<body>
-<div class="container">
-    <div class="form-container">
-        <h1 class="mb-4 text-center">Добавление нового пользователя</h1>
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" lang="ru">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+<!--    <title>Admin Panel - Add User</title>-->
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">-->
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">-->
+<!--    <style>-->
+<!--        .form-container {-->
+<!--            max-width: 800px;-->
+<!--            margin: 0 auto;-->
+<!--            padding: 2rem;-->
+<!--        }-->
+<!--        .nav-tabs .nav-link {-->
+<!--            color: #495057;-->
+<!--            font-weight: 500;-->
+<!--        }-->
+<!--        .nav-tabs .nav-link.active {-->
+<!--            font-weight: 600;-->
+<!--            background-color: #fff;-->
+<!--            border-bottom-color: #fff;-->
+<!--        }-->
+<!--        .role-checkbox {-->
+<!--            margin-right: 15px;-->
+<!--            margin-bottom: 10px;-->
+<!--        }-->
+<!--        .form-section {-->
+<!--            background: #f8f9fa;-->
+<!--            padding: 1.5rem;-->
+<!--            border-radius: 0.5rem;-->
+<!--            margin-bottom: 1.5rem;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="container-fluid">-->
+<!--    &lt;!&ndash; Навигационные вкладки &ndash;&gt;-->
+<!--    <div class="row mt-3">-->
+<!--        <div class="col-12">-->
+<!--            <ul class="nav nav-tabs">-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="/admin">-->
+<!--                        <i class="bi bi-table"></i> Таблица пользователей-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link active">-->
+<!--                        <i class="bi bi-person-plus"></i> Добавить пользователя-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
 
-        <form th:action="@{/admin/save}" method="post">
-            <!-- CSRF-токен -->
-            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+<!--    &lt;!&ndash; Заголовок &ndash;&gt;-->
+<!--    <div class="row mt-4">-->
+<!--        <div class="col-12">-->
+<!--            <h3 class="ms-3 text-primary">-->
+<!--                <i class="bi bi-person-plus"></i> Добавление нового пользователя-->
+<!--            </h3>-->
+<!--            <p class="ms-3 text-muted">Заполните все обязательные поля для создания нового пользователя</p>-->
+<!--        </div>-->
+<!--    </div>-->
 
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="name" class="form-label">Имя *</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="surname" class="form-label">Фамилия *</label>
-                    <input type="text" class="form-control" id="surname" name="surname" required>
-                </div>
-            </div>
+<!--    &lt;!&ndash; Форма добавления пользователя &ndash;&gt;-->
+<!--    <div class="row mt-3">-->
+<!--        <div class="col-12">-->
+<!--            <div class="form-container bg-light rounded shadow-sm">-->
+<!--                &lt;!&ndash; Форма отправляется стандартным способом &ndash;&gt;-->
+<!--                <form id="formNewUser" th:action="@{/admin/save}" method="post">-->
+<!--                    &lt;!&ndash; CSRF-токен &ndash;&gt;-->
+<!--                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
 
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="username" class="form-label">Логин *</label>
-                    <input type="text" class="form-control" id="username" name="username" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="age" class="form-label">Возраст</label>
-                    <input type="number" class="form-control" id="age" name="age" min="1" max="150">
-                </div>
-            </div>
+<!--                    &lt;!&ndash; Основная информация &ndash;&gt;-->
+<!--                    <div class="form-section">-->
+<!--                        <h5 class="mb-3 text-primary">-->
+<!--                            <i class="bi bi-info-circle"></i> Основная информация-->
+<!--                        </h5>-->
 
-            <div class="mb-3">
-                <label for="email" class="form-label">Email адрес</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
-            </div>
+<!--                        <div class="row mb-3">-->
+<!--                            <div class="col-md-6">-->
+<!--                                <label for="firstName" class="form-label">Имя *</label>-->
+<!--                                <input class="form-control" type="text" id="firstName" name="firstName" required-->
+<!--                                       placeholder="Введите имя" th:value="${user?.firstName}">-->
+<!--                                <div class="form-text">Обязательное поле</div>-->
+<!--                            </div>-->
+<!--                            <div class="col-md-6">-->
+<!--                                <label for="lastName" class="form-label">Фамилия *</label>-->
+<!--                                <input class="form-control" type="text" id="lastName" name="lastName" required-->
+<!--                                       placeholder="Введите фамилию" th:value="${user?.lastName}">-->
+<!--                                <div class="form-text">Обязательное поле</div>-->
+<!--                            </div>-->
+<!--                        </div>-->
 
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <label for="password" class="form-label">Пароль *</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="confirmPassword" class="form-label">Подтверждение пароля *</label>
-                    <input type="password" class="form-control" id="confirmPassword" name="matchingPassword" required>
-                </div>
-            </div>
+<!--                        <div class="row mb-3">-->
+<!--                            <div class="col-md-6">-->
+<!--                                <label for="age" class="form-label">Возраст</label>-->
+<!--                                <input class="form-control" type="number" id="age" name="age"-->
+<!--                                       min="1" max="120" placeholder="Возраст пользователя" th:value="${user?.age}">-->
+<!--                                <div class="form-text">Необязательное поле</div>-->
+<!--                            </div>-->
+<!--                            <div class="col-md-6">-->
+<!--                                <label for="email" class="form-label">Email *</label>-->
+<!--                                <input class="form-control" type="email" id="email" name="email" required-->
+<!--                                       placeholder="email@example.com" th:value="${user?.email}">-->
+<!--                                <div class="form-text">Обязательное поле</div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
-            <!-- 🔐 Блок выбора ролей (МНОЖЕСТВЕННЫЙ ВЫБОР) -->
-            <div class="mb-4">
-                <label class="form-label">Роли *</label>
-                <div class="card">
-                    <div class="card-body">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="roleIds"
-                                   value="1" id="roleUser" checked> <!-- value = ID роли ROLE_USER -->
-                            <label class="form-check-label" for="roleUser">
-                                Обычный пользователь (ROLE_USER)
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="roleIds"
-                                   value="2" id="roleAdmin"> <!-- value = ID роли ROLE_ADMIN -->
-                            <label class="form-check-label" for="roleAdmin">
-                                Администратор (ROLE_ADMIN)
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-text">Можно выбрать несколько ролей</div>
-            </div>
+<!--                    &lt;!&ndash; Учетные данные &ndash;&gt;-->
+<!--                    <div class="form-section">-->
+<!--                        <h5 class="mb-3 text-primary">-->
+<!--                            <i class="bi bi-shield-lock"></i> Учетные данные-->
+<!--                        </h5>-->
 
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button type="submit" class="btn btn-success me-md-2">Сохранить пользователя</button>
-                <a th:href="@{/admin}" class="btn btn-outline-secondary">Отмена</a>
-            </div>
-        </form>
-    </div>
-</div>
+<!--                        <div class="row mb-3">-->
+<!--                            <div class="col-md-6">-->
+<!--                                <label for="username" class="form-label">Логин *</label>-->
+<!--                                <input class="form-control" type="text" id="username" name="username" required-->
+<!--                                       placeholder="Введите логин" minlength="3" th:value="${user?.username}">-->
+<!--                                <div class="form-text">Минимум 3 символа</div>-->
+<!--                            </div>-->
+<!--                            <div class="col-md-6">-->
+<!--                                <label for="password" class="form-label">Пароль *</label>-->
+<!--                                <input class="form-control" type="password" id="password" name="password" required-->
+<!--                                       placeholder="Введите пароль" minlength="4">-->
+<!--                                <div class="form-text">Минимум 4 символа</div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+<!--                    &lt;!&ndash; Роли пользователя &ndash;&gt;-->
+<!--                    <div class="form-section">-->
+<!--                        <h5 class="mb-3 text-primary">-->
+<!--                            <i class="bi bi-person-gear"></i> Роли пользователя-->
+<!--                        </h5>-->
+
+<!--                        <div class="row mb-3">-->
+<!--                            <div class="col-12">-->
+<!--                                <label class="form-label">Выберите роли *</label>-->
+<!--                                <div class="card border-0">-->
+<!--                                    <div class="card-body p-0">-->
+<!--                                        <div class="form-check role-checkbox">-->
+<!--                                            <input class="form-check-input" type="checkbox" name="roleIds" id="ROLE_USER" value="1" checked>-->
+<!--                                            <label class="form-check-label fw-bold text-success" for="ROLE_USER">-->
+<!--                                                USER-->
+<!--                                            </label>-->
+<!--                                        </div>-->
+<!--                                        <div class="form-check role-checkbox">-->
+<!--                                            <input class="form-check-input" type="checkbox" name="roleIds" id="ROLE_ADMIN" value="2">-->
+<!--                                            <label class="form-check-label fw-bold text-danger" for="ROLE_ADMIN">-->
+<!--                                                ADMIN-->
+<!--                                            </label>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                <div class="form-text">Можно выбрать несколько ролей. USER включен по умолчанию.</div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                    &lt;!&ndash; Кнопки действий &ndash;&gt;-->
+<!--                    <div class="row mt-4">-->
+<!--                        <div class="col-12">-->
+<!--                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">-->
+<!--                                <button type="reset" class="btn btn-secondary me-md-2">-->
+<!--                                    <i class="bi bi-arrow-clockwise"></i> Очистить форму-->
+<!--                                </button>-->
+<!--                                <button type="submit" class="btn btn-success btn-lg px-4">-->
+<!--                                    <i class="bi bi-person-check"></i> СОЗДАТЬ ПОЛЬЗОВАТЕЛЯ-->
+<!--                                </button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Только Bootstrap CSS - JavaScript не подключаем &ndash;&gt;-->
+<!--</body>-->
+<!--</html>-->

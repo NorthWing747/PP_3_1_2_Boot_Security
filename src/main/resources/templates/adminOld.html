@@ -1,0 +1,243 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" lang="ru">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Админ-панель</title>-->
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">-->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">-->
+<!--    <style>-->
+<!--        body {-->
+<!--            background-color: #f8f9fa;-->
+<!--        }-->
+<!--        .card-shadow {-->
+<!--            box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);-->
+<!--        }-->
+<!--        .table-hover tbody tr:hover {-->
+<!--            background-color: rgba(0,123,255,0.075);-->
+<!--        }-->
+<!--        .badge-user {-->
+<!--            background: linear-gradient(45deg, #007bff, #0056b3);-->
+<!--        }-->
+<!--        .badge-admin {-->
+<!--            background: linear-gradient(45deg, #dc3545, #c82333);-->
+<!--        }-->
+<!--        .sidebar {-->
+<!--            min-width: 200px;-->
+<!--            height: 100vh;-->
+<!--            background-color: #343a40;-->
+<!--        }-->
+<!--        .sidebar .nav-link {-->
+<!--            color: white;-->
+<!--            padding: 12px 16px;-->
+<!--        }-->
+<!--        .sidebar .nav-link.active {-->
+<!--            background-color: #0d6efd;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--&lt;!&ndash; ======== НАВИГАЦИЯ ======== &ndash;&gt;-->
+<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">-->
+<!--    <div class="container-fluid">-->
+<!--        <a class="navbar-brand"><i class="fas fa-shield-alt me-2"></i>Admin panel</a>-->
+<!--        <div class="ms-auto text-white">-->
+<!--            <span th:text="${#authentication.name}">admin@mail.ru</span>-->
+<!--            with roles:-->
+<!--            <span th:text="${#authentication.authorities}">ADMIN USER</span>-->
+<!--            <form th:action="@{/logout}" method="post" class="d-inline">-->
+<!--                <button type="submit" class="btn btn-outline-light btn-sm ms-2">-->
+<!--                    <i class="fas fa-sign-out-alt me-1"></i>Logout-->
+<!--                </button>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
+
+<!--<div class="container-fluid">-->
+<!--    <div class="row">-->
+<!--        &lt;!&ndash; ======== ЛЕВОЕ МЕНЮ ======== &ndash;&gt;-->
+<!--        <div class="col-md-2 p-0 sidebar">-->
+<!--            <nav class="nav flex-column">-->
+<!--                <a class="nav-link active" href="/admin">Admin</a>-->
+<!--                <a class="nav-link" href="/user">User</a>-->
+<!--            </nav>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; ======== ОСНОВНОЙ КОНТЕНТ ======== &ndash;&gt;-->
+<!--        <div class="col-md-10 py-4">-->
+<!--            <div class="d-flex justify-content-between align-items-center mb-4">-->
+<!--                <div>-->
+<!--                    <h3><i class="fas fa-users text-primary me-2"></i>Управление пользователями</h3>-->
+<!--                    <p class="text-muted">Всего пользователей: <span th:text="${#lists.size(users)}">0</span></p>-->
+<!--                </div>-->
+<!--                <a th:href="@{/admin/addUser}" class="btn btn-success">-->
+<!--                    <i class="fas fa-user-plus me-2"></i>Добавить пользователя-->
+<!--                </a>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; Таблица пользователей &ndash;&gt;-->
+<!--            <div class="card card-shadow">-->
+<!--                <div class="card-body p-0">-->
+<!--                    <div class="table-responsive">-->
+<!--                        <table class="table table-hover table-striped mb-0 align-middle">-->
+<!--                            <thead class="table-dark">-->
+<!--                            <tr>-->
+<!--                                <th>ID</th>-->
+<!--                                <th>Имя</th>-->
+<!--                                <th>Фамилия</th>-->
+<!--                                <th>Возраст</th>-->
+<!--                                <th>Логин</th>-->
+<!--                                <th>Email</th>-->
+<!--                                <th>Роли</th>-->
+<!--                                <th class="text-center">Действия</th>-->
+<!--                            </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody>-->
+<!--                            <tr th:each="user : ${users}">-->
+<!--                                <td th:text="${user.id}">1</td>-->
+<!--                                <td th:text="${user.name}">Имя</td>-->
+<!--                                <td th:text="${user.surname}">Фамилия</td>-->
+<!--                                <td th:text="${user.age}">30</td>-->
+<!--                                <td th:text="${user.username}">user1</td>-->
+<!--                                <td th:text="${user.email}">mail@mail.ru</td>-->
+<!--                                <td>-->
+<!--                                    <th:block th:each="role : ${user.roles}">-->
+<!--                                        <span th:if="${role.name == 'ROLE_USER'}"-->
+<!--                                              class="badge badge-user me-1">USER</span>-->
+<!--                                        <span th:if="${role.name == 'ROLE_ADMIN'}"-->
+<!--                                              class="badge badge-admin me-1">ADMIN</span>-->
+<!--                                    </th:block>-->
+<!--                                </td>-->
+<!--                                <td class="text-center">-->
+<!--                                    <button type="button"-->
+<!--                                            class="btn btn-info btn-sm"-->
+<!--                                            data-bs-toggle="modal"-->
+<!--                                            data-bs-target="#editUserModal"-->
+<!--                                            th:attr="data-id=${user.id},-->
+<!--                                                     data-name=${user.name},-->
+<!--                                                     data-surname=${user.surname},-->
+<!--                                                     data-age=${user.age},-->
+<!--                                                     data-email=${user.email}">-->
+<!--                                        <i class="fas fa-edit"></i>-->
+<!--                                    </button>-->
+
+<!--                                    <button type="button"-->
+<!--                                            class="btn btn-danger btn-sm"-->
+<!--                                            data-bs-toggle="modal"-->
+<!--                                            data-bs-target="#deleteUserModal"-->
+<!--                                            th:attr="data-id=${user.id},-->
+<!--                                                     data-name=${user.name},-->
+<!--                                                     data-surname=${user.surname},-->
+<!--                                                     data-age=${user.age},-->
+<!--                                                     data-email=${user.email},-->
+<!--                                                     data-roles=${user.roles}">-->
+<!--                                        <i class="fas fa-trash"></i>-->
+<!--                                    </button>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                            <tr th:if="${#lists.isEmpty(users)}">-->
+<!--                                <td colspan="8" class="text-center text-muted py-4">Нет пользователей</td>-->
+<!--                            </tr>-->
+<!--                            </tbody>-->
+<!--                        </table>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; ======== МОДАЛЬНОЕ ОКНО "РЕДАКТИРОВАТЬ" ======== &ndash;&gt;-->
+<!--<div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog modal-dialog-centered">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title">Редактировать пользователя</h5>-->
+<!--                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>-->
+<!--            </div>-->
+<!--            <form th:action="@{/admin/editUser}" method="post">-->
+<!--                <div class="modal-body">-->
+<!--                    <input type="hidden" name="id" id="editId">-->
+<!--                    <div class="mb-3">-->
+<!--                        <label class="form-label">Имя</label>-->
+<!--                        <input type="text" class="form-control" id="editName" name="name" required>-->
+<!--                    </div>-->
+<!--                    <div class="mb-3">-->
+<!--                        <label class="form-label">Фамилия</label>-->
+<!--                        <input type="text" class="form-control" id="editSurname" name="surname" required>-->
+<!--                    </div>-->
+<!--                    <div class="mb-3">-->
+<!--                        <label class="form-label">Возраст</label>-->
+<!--                        <input type="number" class="form-control" id="editAge" name="age" min="1" max="150">-->
+<!--                    </div>-->
+<!--                    <div class="mb-3">-->
+<!--                        <label class="form-label">Email</label>-->
+<!--                        <input type="email" class="form-control" id="editEmail" name="email" required>-->
+<!--                    </div>-->
+<!--                    <div class="mb-3">-->
+<!--                        <label class="form-label">Password</label>-->
+<!--                        <input type="password" class="form-control" id="password" name="password" required>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="modal-footer">-->
+<!--                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>-->
+<!--                    <button type="submit" class="btn btn-primary">Сохранить</button>-->
+<!--                </div>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; ======== МОДАЛЬНОЕ ОКНО "УДАЛИТЬ" ======== &ndash;&gt;-->
+<!--<div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">-->
+<!--    <div class="modal-dialog modal-dialog-centered">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title">Удалить пользователя</h5>-->
+<!--                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>-->
+<!--            </div>-->
+<!--            <form th:action="@{/admin/deleteUser}" method="post">-->
+<!--                <div class="modal-body">-->
+<!--                    <input type="hidden" name="id" id="deleteId">-->
+<!--                    <div class="mb-2"><strong>ID:</strong> <span id="delUserId"></span></div>-->
+<!--                    <div class="mb-2"><strong>Имя:</strong> <span id="delUserName"></span></div>-->
+<!--                    <div class="mb-2"><strong>Фамилия:</strong> <span id="delUserSurname"></span></div>-->
+<!--                    <div class="mb-2"><strong>Email:</strong> <span id="delUserEmail"></span></div>-->
+<!--                    <p class="text-danger mt-3">Вы уверены, что хотите удалить этого пользователя?</p>-->
+<!--                </div>-->
+<!--                <div class="modal-footer">-->
+<!--                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>-->
+<!--                    <button type="submit" class="btn btn-danger">Удалить</button>-->
+<!--                </div>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>-->
+<!--<script>-->
+<!--    document.addEventListener('DOMContentLoaded', function () {-->
+<!--        const editModal = document.getElementById('editUserModal');-->
+<!--        editModal.addEventListener('show.bs.modal', function (event) {-->
+<!--            const button = event.relatedTarget;-->
+<!--            document.getElementById('editId').value = button.getAttribute('data-id');-->
+<!--            document.getElementById('editName').value = button.getAttribute('data-name');-->
+<!--            document.getElementById('editSurname').value = button.getAttribute('data-surname');-->
+<!--            document.getElementById('editAge').value = button.getAttribute('data-age');-->
+<!--            document.getElementById('editEmail').value = button.getAttribute('data-email');-->
+<!--        });-->
+
+<!--        const deleteModal = document.getElementById('deleteUserModal');-->
+<!--        deleteModal.addEventListener('show.bs.modal', function (event) {-->
+<!--            const button = event.relatedTarget;-->
+<!--            document.getElementById('deleteId').value = button.getAttribute('data-id');-->
+<!--            document.getElementById('delUserId').innerText = button.getAttribute('data-id');-->
+<!--            document.getElementById('delUserName').innerText = button.getAttribute('data-name');-->
+<!--            document.getElementById('delUserSurname').innerText = button.getAttribute('data-surname');-->
+<!--            document.getElementById('delUserEmail').innerText = button.getAttribute('data-email');-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->

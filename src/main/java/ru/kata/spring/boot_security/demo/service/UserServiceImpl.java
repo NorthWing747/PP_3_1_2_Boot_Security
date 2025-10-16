@@ -7,7 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kata.spring.boot_security.demo.entity.Role;
-import ru.kata.spring.boot_security.demo.model.User;
+import ru.kata.spring.boot_security.demo.entity.User;
 import ru.kata.spring.boot_security.demo.repository.RoleRepository;
 import ru.kata.spring.boot_security.demo.repository.UserRepository;
 
@@ -21,16 +21,19 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
-    private final PasswordEncoder passwordEncoder;
+
 
     public UserServiceImpl(UserRepository userRepository,
-                           RoleRepository roleRepository,
-                           PasswordEncoder passwordEncoder) {
+                           RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
 
+    }
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    }
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username)
@@ -40,7 +43,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public List<User> getAll() {
         return userRepository.findAll();
     }
-
+    @Transactional
     public User getById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -49,10 +52,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public void save(User user, List<Long> roleIds) {
         setRolesForUser(user, roleIds);
 
-        // если пользователь новый — хэшируем пароль
-        if (user.getId() == null) {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-        }
         userRepository.save(user);
     }
 
@@ -66,10 +65,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         existingUser.setEmail(user.getEmail());
         existingUser.setRoles(user.getRoles());
 
-        // если пароль изменили — шифруем новый
-        if (!user.getPassword().equals(existingUser.getPassword())) {
-            existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
-        }
+
         // обновляем роли
         setRolesForUser(existingUser, roleIds);
 

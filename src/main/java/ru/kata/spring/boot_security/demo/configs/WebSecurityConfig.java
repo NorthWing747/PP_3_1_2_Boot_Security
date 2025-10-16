@@ -55,9 +55,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 
-//    // Шифровальщик паролей
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
 }

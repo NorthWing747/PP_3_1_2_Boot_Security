@@ -1,6 +1,6 @@
 package ru.kata.spring.boot_security.demo.controller;
 
-import ru.kata.spring.boot_security.demo.model.User;
+import ru.kata.spring.boot_security.demo.entity.User;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -24,8 +25,14 @@ public class AdminController {
 
     // Главная страница админа
     @GetMapping
-    public String adminPage(Model model) {
+    public String adminPage(Model model, Principal principal) {
+        // Получаем текущего аутентифицированного пользователя
+        String username = principal.getName();
+        User authUser = userService.findByUsername(username);
+
+        model.addAttribute("authUser", authUser);
         model.addAttribute("users", userService.getAll());
+
         return "admin";
     }
 
@@ -34,7 +41,7 @@ public class AdminController {
     public String showAddUserForm(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("allRoles", roleService.getAllRoles());
-        return "addUser";
+        return "new";
     }
 
     // Обработка добавления пользователя с ОДНОЙ ролью

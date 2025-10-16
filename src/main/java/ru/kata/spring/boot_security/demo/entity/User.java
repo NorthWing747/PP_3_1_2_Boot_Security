@@ -1,4 +1,4 @@
-package ru.kata.spring.boot_security.demo.model;
+package ru.kata.spring.boot_security.demo.entity;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -34,15 +34,6 @@ public class User implements UserDetails {
     @Column(name = "email")
     private String email;
 
-    // Связь с ролями
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinTable(
-            name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<ru.kata.spring.boot_security.demo.entity.Role> roles = new HashSet<>();
-
     // конструкторы
     public User() {
     }
@@ -55,6 +46,15 @@ public class User implements UserDetails {
         this.password = password;
         this.email = email;
     }
+
+    // Связь с ролями
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<ru.kata.spring.boot_security.demo.entity.Role> roles = new HashSet<>();
 
     // Реализация UserDetails
     @Override
@@ -149,10 +149,6 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-//    // Утилитные методы
-//    public void addRole(ru.kata.spring.boot_security.demo.entity.Role role) {
-//        roles.add(role);
-//    }
 
     @Override
     public String toString() {
